@@ -15,6 +15,11 @@ const productRoutes = require("./routes/product.js");
 const orderRoutes = require("./routes/order.js");
 const paymentBraintreeRoutes = require("./routes/payments.js");
 
+//Middleware
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(cors());
+
 //DB Connection
 mongoose
 	.connect(process.env.DATABASE, {
@@ -28,11 +33,6 @@ mongoose
 	.catch(() => {
 		console.log("DB CONNECTION FAILED!");
 	});
-
-//Middleware
-app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(cors());
 
 //My Routes
 app.use("/api", authRoutes);
